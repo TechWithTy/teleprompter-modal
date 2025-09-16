@@ -173,12 +173,12 @@ const VoiceRecorderCore: React.FC<VoiceRecorderCoreProps> = ({
   if (!open) return null;
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50">
-      <div className="relative max-h-[90vh] w-full max-w-md overflow-y-auto rounded-lg bg-white p-6 shadow-lg dark:bg-gray-800">
+    <div className="fixed inset-0 z-50 flex items-center justify-center bg-background/80 backdrop-blur-sm">
+      <div className="relative max-h-[90vh] w-full max-w-md overflow-y-auto rounded-lg bg-card p-6 shadow-lg text-card-foreground">
         <button
           type="button"
           onClick={onClose}
-          className="absolute top-2 right-2 text-gray-600 hover:text-gray-800 dark:text-gray-400 dark:hover:text-gray-200"
+          className="absolute right-2 top-2 text-muted-foreground hover:text-foreground"
           aria-label="Close"
         >
           <svg
@@ -197,7 +197,7 @@ const VoiceRecorderCore: React.FC<VoiceRecorderCoreProps> = ({
             />
           </svg>
         </button>
-        <h2 className="mb-2 text-center font-semibold text-gray-900 text-lg dark:text-gray-100">
+        <h2 className="mb-2 text-center text-lg font-semibold text-foreground">
           {modalTitle}
         </h2>
         {extraContent}
@@ -215,11 +215,11 @@ const VoiceRecorderCore: React.FC<VoiceRecorderCoreProps> = ({
             />
           </button>
         </div>
-        <div className="mb-2 text-center text-gray-700 dark:text-gray-200">
+        <div className="mb-2 text-center text-muted-foreground">
           Duration: {recordingDuration}s / {maxRecordingLength}s
         </div>
         {maxLengthReached && (
-          <p className="mb-2 text-center font-semibold text-orange-600 text-sm">
+          <p className="mb-2 text-center text-sm font-semibold text-accent">
             ! Maximum recording length reached. Recording stopped automatically.
           </p>
         )}
@@ -244,7 +244,7 @@ const VoiceRecorderCore: React.FC<VoiceRecorderCoreProps> = ({
             >
               <track kind="captions" label="English captions" srcLang="en" />
             </audio>
-            <span className="mt-1 text-gray-500 text-xs">
+            <span className="mt-1 text-xs text-muted-foreground">
               Preview your recording before saving.
             </span>
             <button
@@ -256,7 +256,7 @@ const VoiceRecorderCore: React.FC<VoiceRecorderCoreProps> = ({
                 setRecordingDuration(0);
                 setRecordingError(null);
               }}
-              className="mt-2 w-full rounded bg-yellow-500 px-4 py-2 text-white hover:bg-yellow-600"
+              className="mt-2 w-full rounded bg-yellow-500 px-4 py-2 text-primary-foreground hover:bg-yellow-600"
             >
               Re-record
             </button>
@@ -268,8 +268,8 @@ const VoiceRecorderCore: React.FC<VoiceRecorderCoreProps> = ({
             onClick={handleRecordingToggle}
             className={`mt-2 w-full rounded px-4 py-2 text-white ${
               isRecording
-                ? "bg-red-600 hover:bg-red-700"
-                : "bg-blue-600 hover:bg-blue-700 dark:bg-blue-500 dark:hover:bg-blue-600"
+                ? "bg-destructive hover:bg-destructive/90"
+                : "bg-primary hover:bg-primary/90"
             }`}
             disabled={!!audioUrl && !isRecording}
           >
@@ -280,13 +280,13 @@ const VoiceRecorderCore: React.FC<VoiceRecorderCoreProps> = ({
           <button
             type="button"
             onClick={handleFinishRecording}
-            className="mt-4 w-full rounded bg-green-600 px-4 py-2 text-white hover:bg-green-700"
+            className="mt-4 w-full rounded bg-green-600 px-4 py-2 text-primary-foreground hover:bg-green-700"
           >
             Finish Recording
           </button>
         )}
         {recordingError && (
-          <p className="mt-2 text-center text-red-500 text-sm">
+          <p className="mt-2 text-center text-sm text-destructive">
             {recordingError}
           </p>
         )}

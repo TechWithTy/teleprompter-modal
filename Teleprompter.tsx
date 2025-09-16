@@ -1,3 +1,4 @@
+import { cn } from "@/lib/_utils";
 import type { ScriptLine } from "@/constants/_faker/_api/eleven_labs/scripts";
 import React, {
   useRef,
@@ -91,7 +92,7 @@ const Teleprompter = forwardRef<TeleprompterHandle, TeleprompterProps>(
         {showPauseResume && (
           <button
             type="button"
-            className=" -top-3 ute absolute rounded bg-blue-500 px-3 py-1 font-semibold text-white text-xs shadow hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-400"
+            className="absolute -top-3 rounded bg-primary px-3 py-1 text-xs font-semibold text-primary-foreground shadow hover:bg-primary/90 focus:outline-none focus:ring-2 focus:ring-ring"
             style={{ transform: "translateY(-100%)" }}
             onClick={() => {
               onPauseChange?.(!isScrolling);
@@ -104,7 +105,7 @@ const Teleprompter = forwardRef<TeleprompterHandle, TeleprompterProps>(
           </button>
         )}
         <div
-          className={`min-h-24 w-full overflow-y-auto border bg-white p-2 dark:border-gray-600 dark:bg-gray-900 ${className}`}
+          className={cn("min-h-24 w-full overflow-y-auto border border-border bg-card p-2", className)}
           style={{ height: "auto", maxHeight: "32rem" }}
           aria-label="Teleprompter transcript"
         >
@@ -122,17 +123,18 @@ const Teleprompter = forwardRef<TeleprompterHandle, TeleprompterProps>(
                       });
                     }
                   }}
-                  className={`rounded px-2 py-1 transition-colors duration-200 ${
+                  className={cn(
+                    "rounded px-2 py-1 transition-colors duration-200",
                     idx === currentIndex
-                      ? "border-blue-500 border-l-4 bg-blue-50 font-bold text-blue-700 shadow dark:bg-blue-950 dark:text-blue-200"
-                      : "text-gray-700 dark:text-gray-300"
-                  }`}
+                      ? "border-l-4 border-primary bg-primary/10 font-bold text-primary shadow"
+                      : "text-muted-foreground",
+                  )}
                 >
                   <div className="flex items-center gap-2">
-                    <span className="font-extrabold text-blue-700 text-lg leading-snug dark:text-blue-300">
+                    <span className="text-lg font-extrabold leading-snug text-primary">
                       {line.title}
                     </span>
-                    <span className="ml-2 rounded bg-blue-100 px-2 py-0.5 align-middle font-normal text-blue-700 text-xs">
+                    <span className="ml-2 rounded bg-primary/10 px-2 py-0.5 align-middle text-xs font-normal text-primary">
                       {line.timing}s
                     </span>
                   </div>
@@ -143,7 +145,7 @@ const Teleprompter = forwardRef<TeleprompterHandle, TeleprompterProps>(
               ))}
             </ul>
           ) : (
-            <div className="text-center text-gray-400">End of script</div>
+            <div className="text-center text-muted-foreground">End of script</div>
           )}
         </div>
       </div>

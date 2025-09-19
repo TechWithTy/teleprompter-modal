@@ -174,11 +174,11 @@ const VoiceRecorderCore: React.FC<VoiceRecorderCoreProps> = ({
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-background/80 backdrop-blur-sm">
-      <div className="relative max-h-[90vh] w-full max-w-md overflow-y-auto rounded-lg bg-card p-6 shadow-lg text-card-foreground">
+      <div className="relative max-h-[90vh] w-full max-w-md overflow-y-auto rounded-lg bg-card p-6 text-card-foreground shadow-lg">
         <button
           type="button"
           onClick={onClose}
-          className="absolute right-2 top-2 text-muted-foreground hover:text-foreground"
+          className="absolute top-2 right-2 text-muted-foreground hover:text-foreground"
           aria-label="Close"
         >
           <svg
@@ -197,7 +197,7 @@ const VoiceRecorderCore: React.FC<VoiceRecorderCoreProps> = ({
             />
           </svg>
         </button>
-        <h2 className="mb-2 text-center text-lg font-semibold text-foreground">
+        <h2 className="mb-2 text-center font-semibold text-foreground text-lg">
           {modalTitle}
         </h2>
         {extraContent}
@@ -219,7 +219,7 @@ const VoiceRecorderCore: React.FC<VoiceRecorderCoreProps> = ({
           Duration: {recordingDuration}s / {maxRecordingLength}s
         </div>
         {maxLengthReached && (
-          <p className="mb-2 text-center text-sm font-semibold text-accent">
+          <p className="mb-2 text-center font-semibold text-accent text-sm">
             ! Maximum recording length reached. Recording stopped automatically.
           </p>
         )}
@@ -244,7 +244,7 @@ const VoiceRecorderCore: React.FC<VoiceRecorderCoreProps> = ({
             >
               <track kind="captions" label="English captions" srcLang="en" />
             </audio>
-            <span className="mt-1 text-xs text-muted-foreground">
+            <span className="mt-1 text-muted-foreground text-xs">
               Preview your recording before saving.
             </span>
             <button
@@ -286,7 +286,7 @@ const VoiceRecorderCore: React.FC<VoiceRecorderCoreProps> = ({
           </button>
         )}
         {recordingError && (
-          <p className="mt-2 text-center text-sm text-destructive">
+          <p className="mt-2 text-center text-destructive text-sm">
             {recordingError}
           </p>
         )}
